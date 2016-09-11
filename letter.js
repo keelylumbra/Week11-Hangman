@@ -7,8 +7,8 @@ var lettersInChosenWord = []
 // console.log(random.randomWord)
 
 
-
-exports.lettersInChosenWord = random.randomWord.split("");
+exports.randomWord = random.randomWord.toLowerCase()
+exports.lettersInChosenWord = exports.randomWord.split("");
 exports.numBlanks = exports.lettersInChosenWord.length
 
 

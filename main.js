@@ -17,3 +17,4 @@ var gameWord = require('./letter.js');
 
 
 console.log (gameWord.lettersInChosenWord);
+console.log(gameWord.numBlanks)

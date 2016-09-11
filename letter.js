@@ -1,15 +1,18 @@
 
 var random = require('./game.js');
 var lettersInChosenWord = []
-var numBlanks = 0
-
-
-console.log(random.randomWord)
 
 
 
-exports.lettersInChosenWord = random.randomWord.toString().split("");
-exports.numBlanks = lettersInChosenWord.length;
+// console.log(random.randomWord)
+
+
+
+exports.lettersInChosenWord = random.randomWord.split("");
+exports.numBlanks = exports.lettersInChosenWord.length
+
+
+
 
 
 

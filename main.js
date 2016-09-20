@@ -4,7 +4,7 @@ var gameWord = require('./letter.js');
 
 var numGuesses = 0
 startGame();
-guess ();
+
 
 	
 
@@ -22,58 +22,52 @@ wrongGuesses = [];
 
 	}
 
+	console.log (blanksAndSuccesses);
 
-
-console.log (blanksAndSuccesses)
-// console.log (gameWord.randomWord)
+guess ();
 
 
 }
 
-
 function guess () {
 
-inquirer.prompt([
+	var letterInWord = false;
+
+	
+
+	inquirer.prompt([
                 { type: 'input',
                     name: 'letter',
                     message: 'Give me a letter!'
                 }]).then(function(user) { 
 
+                
 
+				for (var i=0; i<gameWord.numBlanks; i++) {
 
-
-
-var letterInWord = false;
-
-for (var i=0; i<gameWord.numBlanks; i++) {
-
-
-
-
-
-	// Check if a leter exists inside the array at all.
-	
-
-		if(gameWord.lettersInChosenWord[i] == user.letter) {
-			letterInWord = true; // if the letter exists then toggle this boolean to true. This will be used in the next step. 
- 		}
+						if(gameWord.lettersInChosenWord[i] == user.letter) {
+								letterInWord = true; // if the letter exists then toggle this boolean to true. This will be used in the next step. 
+ 										}
 	
 
 	// If the letter exists somewhere in the word, then figure out exactly where (which indices)
-	if(letterInWord === true){
+									if(letterInWord === true){
 	
 		// loop through the word 
-		for (var i=0; i<gameWord.numBlanks; i++){
+									for (var i=0; i<gameWord.numBlanks; i++){
 
 			// Populate the blanksAndSuccesses with every instance of the letter.
-			if(gameWord.lettersInChosenWord[i] == user.letter) {
-				blanksAndSuccesses[i] = user.letter; // here we set the specific space in blanks and letter equal to the letter when there is a match.
+									if(gameWord.lettersInChosenWord[i] == user.letter) {
+											blanksAndSuccesses[i] = user.letter; // here we set the specific space in blanks and letter equal to the letter when there is a match.
 
-				
-
+												
+												
+												
 			
-			}
-		}
+												}
+								}
+
+							}
 
 
 		
@@ -81,18 +75,26 @@ for (var i=0; i<gameWord.numBlanks; i++) {
 	
 
 	// If the letter doesn't exist at all...
-	else {
-		wrongGuesses.push(user.letter); // then we add the letter to the list of wrong letters
+							else {
+									numGuesses -= 1;
+									wrongGuesses.push(user.letter); // then we add the letter to the list of wrong letters
+
+									
 		// numGuesses--; // and we subtract one of the guesses
 		// console.log ("Guesses left: ", numGuesses);
+
+									
 		// console.log(blanksAndSuccesses);
 
 		
 		
-		}
+									}
 	
-}
-}
+							}
+
+
+							roundComplete();	
+							})
 
 
 
@@ -105,7 +107,9 @@ for (var i=0; i<gameWord.numBlanks; i++) {
 
 
 
-                	});
+                	
+
+                	
 
 
             }
@@ -125,6 +129,9 @@ function roundComplete(){
 
 					
 
+				console.log (blanksAndSuccesses);
+
+					
 	// First, log an initial status update in the console telling us how many wins, losses, and guesses are left
 	// console.log("WinCount: " + winCounter + " | LossCount: " + lossCounter + " | NumGuesses: " + numGuesses);
 
@@ -152,7 +159,7 @@ function roundComplete(){
 
 
 
-roundComplete();
+
 
 
           

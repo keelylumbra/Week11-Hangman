@@ -31,6 +31,8 @@ guess ();
 
 function guess () {
 
+		
+
 	var letterInWord = false;
 
 	
@@ -43,12 +45,13 @@ function guess () {
 
                 
 
-				for (var i=0; i<gameWord.numBlanks; i++) {
+                	for (var i=0; i<gameWord.numBlanks; i++) {
+				
 
 						if(gameWord.lettersInChosenWord[i] == user.letter) {
 								letterInWord = true; // if the letter exists then toggle this boolean to true. This will be used in the next step. 
  										}
-	
+									
 
 	// If the letter exists somewhere in the word, then figure out exactly where (which indices)
 									if(letterInWord === true){
@@ -67,17 +70,20 @@ function guess () {
 												}
 								}
 
+							
 							}
-
+						}
 
 		
 		 // logging for testing
 	
 
 	// If the letter doesn't exist at all...
-							else {
+							if (letterInWord == false) {
 									numGuesses -= 1;
-									wrongGuesses.push(user.letter); // then we add the letter to the list of wrong letters
+
+									console.log (numGuesses + " Guesses Left");
+									 // then we add the letter to the list of wrong letters
 
 									
 		// numGuesses--; // and we subtract one of the guesses
@@ -88,13 +94,19 @@ function guess () {
 
 		
 		
-									}
+									
+
+
 	
 							}
 
+							
+							
+						roundComplete();
 
-							roundComplete();	
+							
 							})
+
 
 
 
@@ -138,7 +150,6 @@ function roundComplete(){
 	
 	// If we have gotten all the letters to match the solution... 
 	if (gameWord.lettersInChosenWord.toString() == blanksAndSuccesses.toString()) {
-		winCounter++; // add to the win counter 
 		console.log ("You win!"); // give the user an alert
 		numGuesses = 0
 
@@ -147,7 +158,7 @@ function roundComplete(){
 
 	// If we've run out of guesses
 	else if (numGuesses == 0) {
-		lossCounter++; 	 // add to the loss counter 
+		
 		console.log ("You lose"); // give the user an alert
 
 		// Update the loss counter in the HTML
